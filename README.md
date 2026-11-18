@@ -1,5 +1,12 @@
 # HalvorAI Java SDK
 
+<p>
+<a href="https://github.com/halvorAI/ingest-java/actions/workflows/ci.yml"><img height="16" alt="CI" src="https://github.com/halvorAI/ingest-java/actions/workflows/ci.yml/badge.svg"></a>
+<img height="16" alt="status: frozen" src="https://img.shields.io/badge/status-frozen-7A766C?style=flat-square">
+<a href="https://central.sonatype.com/artifact/com.halvorai/halvorai-ingest"><img height="16" alt="Maven Central" src="https://img.shields.io/maven-central/v/com.halvorai/halvorai-ingest?style=flat-square&color=4A6100"></a>
+<a href="https://github.com/halvorAI/ingest-java/blob/main/LICENSE"><img height="16" alt="License" src="https://img.shields.io/badge/license-Apache--2.0-4A6100?style=flat-square"></a>
+</p>
+
 > **Frozen as of 17 Nov 2026.** This SDK stays published on Maven Central (`com.halvorai:halvorai-ingest:0.1.0`), but it gets no new features and is no longer kept in step with the JavaScript SDK. For new integrations, use [ingest-js](https://github.com/halvorAI/ingest-js) (Node.js) or [ingest-python](https://github.com/halvorAI/ingest-python). If you need Java or Kotlin, contact us at hello@halvorai.com.
 
 Signed, attributed payment events for AI agents. HalvorAI records each payment an agent makes, with the agent, the owner it acted for, the instruction it followed and the network proof that came with it. It is never in the payment path: it cannot slow or block a payment.
@@ -7,7 +14,7 @@ Signed, attributed payment events for AI agents. HalvorAI records each payment a
 > **Developer preview.** The SDK works offline today: build, sign and inspect events with your own sink. Sandbox API keys go to early-access teams. [Request access](https://halvorai.com/?utm_source=github&utm_campaign=ingest_java#early-access).
 
 - Docs: [docs.halvorai.com](https://docs.halvorai.com)
-- Event format: [Agent Payment Event (APE) v0.1](https://schema.halvorai.com), open and Apache-2.0
+- Event format: [Agent Payment Event (APE) v0.1](https://schema.halvorai.com/ape/v0.1.json), open and Apache-2.0
 - Java 17 or later; works from Kotlin and other JVM languages. **No runtime dependencies**: Ed25519, HTTP and JSON come from the JDK.
 - At 0.1.0, events are byte-identical to the [Node.js](https://github.com/halvorAI/ingest-js), [Python](https://github.com/halvorAI/ingest-python) and [Go](https://github.com/halvorAI/ingest-go) SDKs.
 
@@ -61,7 +68,7 @@ halvor.close(Duration.ofSeconds(5));
 
 `emit` returns the event id at once and never throws. Instruction text is hashed on your machine and never sent. Anyone with the public half of the key (`key.toPublic()`) can check an envelope with `envelope.verify(publicKey)`.
 
-You can also pass a `Map<String, Object>` to `emit`, in the shape of the [field reference](https://schema.halvorai.com).
+You can also pass a `Map<String, Object>` to `emit`, in the shape of the [field reference](https://github.com/halvorAI/ape-schema/blob/main/docs/FIELDS.md).
 
 ### Agent context and threads
 
